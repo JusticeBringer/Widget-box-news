@@ -7,7 +7,6 @@ const PAGINATION_MULTIPLE = 5;
 
 const removeCurrentNews = () => {
   const newsList = document.getElementById("news-list");
-  //   newsList.getElementsByTagName("div").addClass("removed");
   const divNews = Object.values(newsList.getElementsByTagName("div"));
   divNews.map((item) => {
     item.childNodes.forEach((itemChild) => {
