@@ -14,9 +14,9 @@ The design can be improved, keeping the elements and placement of the following 
 
 ![image](https://user-images.githubusercontent.com/42377363/166248268-1eabd0e6-29fd-4646-8e21-b91e9ea76b5a.png)
 
-★	The 3 dots must switch pages and the current page must be highlighted.
-★	Every 15 seconds, the next page should be displayed.
-★	The Widget must update every 3 minutes reloading the page.
+- The 3 dots must switch pages and the current page must be highlighted.
+- Every 15 seconds, the next page should be displayed.
+- The Widget must update every 3 minutes reloading the page.
 
 ### Technologies used
 
