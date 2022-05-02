@@ -18,6 +18,18 @@ The design can be improved, keeping the elements and placement of the following 
 - Every 15 seconds, the next page should be displayed.
 - The Widget must update every 3 minutes reloading the page.
 
+# Implementation
+
+The implementation of the problem can be seen here.
+
+![image](https://user-images.githubusercontent.com/42377363/166306646-63bdb322-12d6-4ff1-aa8c-f68569793d85.png)
+
+Added following bonuses:
+
+- On initial load, news are saved to local storage
+- Refreshing the page will re-fetch news only if 3 minutes have passed
+- On initial load, a loading animation is showed to the user
+
 ### Technologies used
 
 - HTML5, CSS3, JavaScript ES6
