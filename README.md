@@ -20,7 +20,7 @@ The design can be improved, keeping the elements and placement of the following 
 
 # Implementation
 
-The implementation of the problem can be seen here.
+The implementation of the problem can be seen [here](https://justicebringer.github.io/Widget-box-news/).
 
 ![image](https://user-images.githubusercontent.com/42377363/166306646-63bdb322-12d6-4ff1-aa8c-f68569793d85.png)
 
