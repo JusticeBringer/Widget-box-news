@@ -7,7 +7,16 @@ const PAGINATION_MULTIPLE = 5;
 
 const removeCurrentNews = () => {
   const newsList = document.getElementById("news-list");
-  newsList.innerHTML = "";
+  //   newsList.getElementsByTagName("div").addClass("removed");
+  const divNews = Object.values(newsList.getElementsByTagName("div"));
+  divNews.map((item) => {
+    item.childNodes.forEach((itemChild) => {
+      itemChild.classList.add("removed");
+    });
+    setTimeout(() => {
+      item.remove();
+    }, 250);
+  });
 };
 
 const appendNews = (start = 0) => {
@@ -19,6 +28,9 @@ const appendNews = (start = 0) => {
 
     const titleNode = document.createTextNode(item.title);
     title.appendChild(titleNode);
+    title.addEventListener("transitionend", () => {
+      title.remove();
+    });
 
     const details = document.createElement("p");
     details.classList.add("details-news");
@@ -50,6 +62,9 @@ const removeHighlightActivePage = () => {
 };
 
 const changePage = (page = 0) => {
+  if (page === ACTIVE_PAGINATION_PAGE) {
+    return;
+  }
   removeCurrentNews();
   removeHighlightActivePage();
   appendNews(page * PAGINATION_MULTIPLE);
@@ -90,13 +105,13 @@ const removeLoadingAnimation = () => {
   loadingNewsList.remove();
 };
 
-const initialLoad = () => {
+const initialLoadEffect = () => {
   removeLoadingAnimation();
   appendNews();
   highlightActivePage(0);
 };
 
-window.onload = async function () {
+const initialLoad = async () => {
   GLOBAL_NEWS = retrieveNewsFromLocalStorage();
   DATE_NEWS_FETCHED_FROM_API = retrieveDateNewsFetchedFromAPI();
 
@@ -105,7 +120,7 @@ window.onload = async function () {
     GLOBAL_NEWS.length > 0 &&
     !isDateMoreThanThreeMinutesAgo(DATE_NEWS_FETCHED_FROM_API)
   ) {
-    initialLoad();
+    initialLoadEffect();
     return;
   }
 
@@ -118,9 +133,13 @@ window.onload = async function () {
         LOCAL_STORAGE_NEWS_DATE_RETRIEVED_KEY,
         JSON.stringify(new Date())
       );
-      initialLoad();
+      initialLoadEffect();
     })
     .catch((err) => alert(err));
+};
+
+window.onload = async function () {
+  initialLoad();
 };
 
 setInterval(() => {

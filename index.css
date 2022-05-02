@@ -2,6 +2,7 @@
   --wrapper-padding: 8px;
   --primary-yellow: antiquewhite;
   --secondary-yellow: rgb(182, 150, 109);
+  --opacity-transition: 0.25s;
 }
 
 @font-face {
@@ -80,14 +81,18 @@
   font-weight: 400;
   font-size: 24px;
   font-family: "Poppins";
+  transition: opacity var(--opacity-transition);
 }
 
 .details-news {
   font-size: 20px;
   font-weight: 100;
   font-family: "Roboto";
+  transition: opacity var(--opacity-transition);
 }
-
+.removed {
+  opacity: 0;
+}
 .details {
   display: flex;
   flex-direction: column;
