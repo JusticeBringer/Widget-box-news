@@ -85,7 +85,13 @@ const retrieveDateNewsFetchedFromAPI = () => {
   );
 };
 
+const removeLoadingAnimation = () => {
+  const loadingNewsList = document.getElementById("skeleton-initial-list");
+  loadingNewsList.remove();
+};
+
 const initialLoad = () => {
+  removeLoadingAnimation();
   appendNews();
   highlightActivePage(0);
 };

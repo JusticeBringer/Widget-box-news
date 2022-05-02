@@ -57,7 +57,8 @@
   cursor: pointer;
 }
 
-#news-list {
+#news-list,
+.skeleton-item-wrapper {
   display: grid;
   justify-items: flex-start;
   grid-auto-flow: row;
@@ -102,4 +103,39 @@
 p {
   margin: 0px;
   padding: 0px;
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-text {
+  width: 90%;
+  height: 0.5rem;
+  border-radius: 0.175rem;
+}
+
+.skeleton-heading {
+  width: 90%;
+  margin-bottom: 0.25rem;
+  border-radius: 0.175rem;
+  height: 1.5rem;
+}
+
+.skeleton-text:last-child {
+  width: 80%;
+}
+
+.skeleton-item-wrapper {
+  min-width: 200px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
 }
