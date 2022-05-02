@@ -1,4 +1,4 @@
-# Widget-box-news
+# Widget box (news)
 
 Write the code for a widget box (news), which has to display 15 news, with pagination (3 pages). The news will be taken through API, calling: http://www.mocky.io/v2/58fda6ce0f0000c40908b8c8. 
 The API will reply with something like: 
