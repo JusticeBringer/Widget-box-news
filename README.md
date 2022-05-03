@@ -26,10 +26,11 @@ The implementation of the problem can be seen [here](https://justicebringer.gith
 
 Added following bonuses:
 
-- On initial load, news are saved to local storage
+- On initial load news are saved to local storage
 - Refreshing the page will re-fetch news only if 3 minutes have passed
-- On initial load, a loading animation is showed to the user
-- On page transition, the old news list fades away
+- On initial load a loading animation is showed to the user
+- On page transition the old news list fades away
+- Poppins font for the headings and Roboto for paragraph texts
 
 ### Technologies used
 
