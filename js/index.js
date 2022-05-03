@@ -5,6 +5,7 @@ const LOCAL_STORAGE_NEWS_KEY = "news";
 const LOCAL_STORAGE_NEWS_DATE_RETRIEVED_KEY = "news-date-retrieved";
 const PAGINATION_MULTIPLE = 5;
 
+// Remove news that are displayed to the user with fade out effect
 const removeCurrentNews = () => {
   const newsList = document.getElementById("news-list");
   const divNews = Object.values(newsList.getElementsByTagName("div"));
@@ -18,6 +19,7 @@ const removeCurrentNews = () => {
   });
 };
 
+// Append news to the list displayed to the user
 const appendNews = (start = 0) => {
   GLOBAL_NEWS.slice(start, start + PAGINATION_MULTIPLE).map((item) => {
     const itemWrapper = document.createElement("div");
@@ -27,9 +29,6 @@ const appendNews = (start = 0) => {
 
     const titleNode = document.createTextNode(item.title);
     title.appendChild(titleNode);
-    title.addEventListener("transitionend", () => {
-      title.remove();
-    });
 
     const details = document.createElement("p");
     details.classList.add("details-news");
@@ -45,6 +44,7 @@ const appendNews = (start = 0) => {
   });
 };
 
+// Highlight the active pagination page
 const highlightActivePage = (page = 0) => {
   const newsListDots = document.querySelectorAll("#pagination li");
   if (page > newsListDots.length || page < 0) {
@@ -55,11 +55,13 @@ const highlightActivePage = (page = 0) => {
   newsListDots[page].classList.add("active-page");
 };
 
+// Remove the highlight of active pagination page
 const removeHighlightActivePage = () => {
   const newsListDots = document.querySelectorAll("#pagination li");
   newsListDots[ACTIVE_PAGINATION_PAGE].classList.remove("active-page");
 };
 
+// Implement the logic of changing the pagination page
 const changePage = (page = 0) => {
   if (page === ACTIVE_PAGINATION_PAGE) {
     return;
@@ -70,6 +72,7 @@ const changePage = (page = 0) => {
   highlightActivePage(page % PAGINATION_MULTIPLE);
 };
 
+// Return how many minutes have passed since given date
 const minutesSinceGivenDate = (dateReceived) => {
   const date = new Date(dateReceived);
   const dateInSeconds = Math.floor(
@@ -79,6 +82,7 @@ const minutesSinceGivenDate = (dateReceived) => {
   return Math.floor(dateInSeconds / 60);
 };
 
+// Return true or false if received date is more than three minutes ago
 const isDateMoreThanThreeMinutesAgo = (givenDate) => {
   if (givenDate === null || givenDate === undefined) {
     return true;
@@ -89,27 +93,32 @@ const isDateMoreThanThreeMinutesAgo = (givenDate) => {
   return false;
 };
 
+// Retrieve news stored in local storage
 const retrieveNewsFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem(LOCAL_STORAGE_NEWS_KEY));
 };
 
+// Retrieve the date news have been fetched from API call
 const retrieveDateNewsFetchedFromAPI = () => {
   return JSON.parse(
     localStorage.getItem(LOCAL_STORAGE_NEWS_DATE_RETRIEVED_KEY)
   );
 };
 
+// Remove loading animation on initial load
 const removeLoadingAnimation = () => {
   const loadingNewsList = document.getElementById("skeleton-initial-list");
   loadingNewsList.remove();
 };
 
+// Implement the logic of initial load effect
 const initialLoadEffect = () => {
   removeLoadingAnimation();
   appendNews();
   highlightActivePage(0);
 };
 
+// Implement the logic of initial load
 const initialLoad = async () => {
   GLOBAL_NEWS = retrieveNewsFromLocalStorage();
   DATE_NEWS_FETCHED_FROM_API = retrieveDateNewsFetchedFromAPI();
@@ -137,18 +146,21 @@ const initialLoad = async () => {
     .catch((err) => alert(err));
 };
 
-window.onload = async function () {
-  initialLoad();
-};
-
+// Change pagination page every 15 seconds
 setInterval(() => {
   if (ACTIVE_PAGINATION_PAGE + 1 === GLOBAL_NEWS.length / PAGINATION_MULTIPLE) {
     changePage(0);
     return;
   }
   changePage(ACTIVE_PAGINATION_PAGE + 1);
-}, 15 * 1000);
+}, 1000 * 15);
 
+// Reload page every 3 minutes
 setTimeout(() => {
   location.reload();
 }, 1000 * 60 * 3);
+
+// On initial load of the page we run an initial load function
+window.onload = async function () {
+  initialLoad();
+};

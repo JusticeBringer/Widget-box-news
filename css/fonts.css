@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins/Poppins-Black.eot");
+  src: url("../public/fonts/Poppins/Poppins-Black.woff") format("woff"),
+    url("../public/fonts/Poppins/Poppins-Black.svg") format("svg");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../public/fonts/Roboto/Roboto-Light.eot");
+  src: url("../public/fonts/Roboto/Roboto-Light.woff") format("woff"),
+    url("../public/fonts/Roboto/Roboto-Light.svg") format("svg");
+}
